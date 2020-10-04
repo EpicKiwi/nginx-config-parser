@@ -102,6 +102,13 @@ describe('toConf', () => {
     result.should.contain('server {')
     result.should.contain('}')
   })
+
+  it('converts arrays of objects to successive config blocks', () => {
+    const json = {server: [{}, {}]}
+    const result = parser.toConf(json)
+    result.should.contain('server {')
+    result.should.contain('}')
+  })
 })
 
 describe('parse', () => {
